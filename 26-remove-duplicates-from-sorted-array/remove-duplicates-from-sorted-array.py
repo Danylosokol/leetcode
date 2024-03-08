@@ -1,15 +1,10 @@
 class Solution:
     def removeDuplicates(self, nums: List[int]) -> int:
-        unique = 0
-        for i in range(len(nums)):
-            j = i
-            while i < len(nums) - 1 and nums[i] == nums[i + 1] and j < len(nums):
-                j += 1
-                duplicate = nums.pop(i + 1)
-                nums.append(duplicate)
-            unique += 1
-            if i < len(nums) - 1 and nums[i] >= nums[i + 1]:
-                break
-        return unique
+        left_pointer = 1
+        for right_pointer in range(1, len(nums)):
+            if nums[right_pointer] != nums[right_pointer - 1]:
+                nums[left_pointer] = nums[right_pointer]
+                left_pointer += 1
+        return left_pointer
             
         
