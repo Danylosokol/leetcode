@@ -15,8 +15,5 @@ class Solution:
                     return False
             else:
                 return False
-        if len(history):
-            return False
-        else:
-            return True
+        return not history
         
