@@ -12,13 +12,7 @@ class Solution:
             elif record == "C":
                 if len(records) >= 1:
                     records.pop()
-            print(records)
-            print("-----------")
-        print(records)
         sum = 0
         for item in records:
-            print("item:")
-            print(item)
             sum += item
-            print(sum)
         return sum
