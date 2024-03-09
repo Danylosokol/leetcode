@@ -12,7 +12,4 @@ class Solution:
                     records.pop()
             else:
                 records.append(int(record))
-        sum = 0
-        for item in records:
-            sum += item
-        return sum
+        return sum(records)
