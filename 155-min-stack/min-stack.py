@@ -7,26 +7,26 @@ class MinStack:
     def push(self, val: int) -> None:
         if self.stack:
             prev_node = self.stack[-1]
-            prev_min = prev_node['min_val']
+            prev_min = prev_node[1]
             curr_min = prev_min if val > prev_min else val
-            self.stack.append({'val': val, 'min_val': curr_min})
+            self.stack.append([val, curr_min])
         else:
-            self.stack.append({'val': val, 'min_val': val})
+            self.stack.append([val, val])
 
 
     def pop(self) -> None:
         last_node = self.stack.pop()
-        return last_node['val']
+        return last_node[0]
 
 
     def top(self) -> int:
         last_node = self.stack[-1]
-        return last_node['val']
+        return last_node[0]
 
 
     def getMin(self) -> int:
         last_node = self.stack[-1]
-        return last_node['min_val']
+        return last_node[1]
         
 
 
