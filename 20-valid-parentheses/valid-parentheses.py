@@ -1,19 +1,18 @@
 class Solution:
     def isValid(self, s: str) -> bool:
-        valid_pairs = {
-            '(': ')',
-            '{': '}',
-            '[': ']',
+        closeToOpen = {
+            ')': '(',
+            '}': '{',
+            ']': '[',
         }
-        history = []
-        for item in s:
-            if item in valid_pairs:
-               history.append(item)
-            elif len(history):
-                last_in_history = history.pop()
-                if item != valid_pairs[last_in_history]:
+        stack = []
+        for c in s:
+            if c in closeToOpen:
+                if stack and stack[-1] == closeToOpen[c]:
+                    stack.pop()
+                else:
                     return False
             else:
-                return False
-        return not history
+                stack.append(c)
+        return True if not stack else False
         
