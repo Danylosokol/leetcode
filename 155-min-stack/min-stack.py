@@ -5,20 +5,12 @@ class MinStack:
 
 
     def push(self, val: int) -> None:
-        print("pushing val:")
-        print(val)
         if self.stack:
-            print("retrieving prev value")
             prev_node = self.stack[-1]
-            print("prev_val")
-            print(prev_node)
             prev_min = prev_node['min_val']
-            print("prev min:")
-            print(prev_min)
             curr_min = prev_min if val > prev_min else val
             self.stack.append({'val': val, 'min_val': curr_min})
         else:
-            print("appending first value")
             self.stack.append({'val': val, 'min_val': val})
 
 
