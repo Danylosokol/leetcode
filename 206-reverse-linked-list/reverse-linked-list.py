@@ -9,12 +9,10 @@ class Solution:
         if not curr_node:
             return curr_node
         unlinked_node = curr_node.next
-        while curr_node:
+        while unlinked_node:
             next_node = unlinked_node
             if curr_node == head:
                 curr_node.next = None
-            if next_node == None:
-                break
             unlinked_node = next_node.next
             next_node.next = curr_node
             curr_node = next_node
