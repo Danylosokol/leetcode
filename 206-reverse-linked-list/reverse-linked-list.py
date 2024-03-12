@@ -10,13 +10,10 @@ class Solution:
             return curr_node
         unlinked_node = curr_node.next
         while curr_node:
-            print(curr_node.val)
             next_node = unlinked_node
             if curr_node == head:
                 curr_node.next = None
             if next_node == None:
-                print("in the end of the list")
-                print(curr_node.val)
                 break
             unlinked_node = next_node.next
             next_node.next = curr_node
