@@ -8,8 +8,8 @@ class Solution:
         if head == None or head.next == None:
             return head
         curr = head
-        newHead = self.reverseList(curr.next)
+        new_head = self.reverseList(curr.next)
         curr.next.next = curr
         curr.next = None
-        return newHead
+        return new_head
         
