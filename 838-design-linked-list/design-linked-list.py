@@ -42,11 +42,11 @@ class MyLinkedList:
     def addAtIndex(self, index: int, val: int) -> None:
         curr = self.left
 
-        while curr and index != 0:
+        while curr.next and index != 0:
             curr = curr.next
             index -= 1
         
-        if curr and curr.next and index == 0:
+        if curr.next and index == 0:
             prev = curr
             next = curr.next
             new_node = ListNode(val)
