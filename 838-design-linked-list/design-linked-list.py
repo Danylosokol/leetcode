@@ -62,7 +62,7 @@ class MyLinkedList:
             curr = curr.next
             index -= 1
         
-        if curr and curr.next != self.right and index == 0:
+        if curr.next != self.right and index == 0:
             prev = curr
             next = curr.next.next
             prev.next = next
