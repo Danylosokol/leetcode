@@ -50,10 +50,10 @@ class MyLinkedList:
     def deleteAtIndex(self, index: int) -> None:
         curr = self.head
         i = 0
-        while i < index and curr.next:
+        while i < index and curr:
             curr = curr.next
             i += 1
-        if curr.next and i == index:
+        if curr and curr.next:
             curr.next = curr.next.next
             if curr.next == None:
                 self.tail = curr
