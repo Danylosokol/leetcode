@@ -57,18 +57,19 @@ class MyLinkedList:
                 self.tail = new_node
 
     def deleteAtIndex(self, index: int) -> None:
+        print(f"deleting at index: {index}")
         curr = self.head
         i = 0
-        while i < index and curr:
+        while i < index and curr.next:
             print("curr value in a loop:")
             print(curr.val)
             curr = curr.next
             i += 1
-        if curr and curr.next and i == index:
-            print("current value:")
-            print(curr.val)
-            print("next curr value:")
-            print(curr.next.val)
+        if curr.next and i == index:
+            # print("current value:")
+            # print(curr.val)
+            # print("next curr value:")
+            # print(curr.next.val)
             curr.next = curr.next.next
             if curr.next == None:
                 self.tail = curr
