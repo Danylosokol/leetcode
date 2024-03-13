@@ -54,9 +54,9 @@ class MyLinkedList:
             curr = curr.next
             i += 1
         if curr and curr.next:
-            curr.next = curr.next.next
-            if curr.next == None:
+            if curr.next == self.tail:
                 self.tail = curr
+            curr.next = curr.next.next
 
 
 # Your MyLinkedList object will be instantiated and called as such:
