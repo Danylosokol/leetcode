@@ -18,12 +18,6 @@ class BrowserHistory:
         return self.history[self.curr]
 
     def forward(self, steps: int) -> str:
-        print("in forward:")
-        print(self.curr)
-        print(steps)
-        print(self.curr + steps)
-        print(self.len)
-        print(self.history)
         self.curr = min(self.curr + steps, self.len - 1)
         return self.history[self.curr]
 
