@@ -1,27 +1,22 @@
+from collections import deque
+
 class Solution:
     def countStudents(self, students: List[int], sandwiches: List[int]) -> int:
-        result = 0
-        studentsCounter = {}
+        students_q = deque(students)
+        sandwiches_q = deque(sandwiches)
 
-        if not sandwiches:
-            return len(students)
+        counter = 0
 
-        requiredStudent = 0 if sandwiches[0] == 0 else 1
-        i = 0
-        while i < len(students):
-            if students[i] == requiredStudent:
-                break
-            i += 1
+        while len(students_q) > counter:
+            student = students_q.popleft()
+            if student == sandwiches_q[0]:
+                sandwiches_q.popleft()
+                counter = 0
+            else:
+                students_q.append(student)
+                counter += 1
+        return len(students_q)
+            
 
-        if i == len(students):
-            return len(students)
 
-        if students[0] == sandwiches[0]:
-            students.pop(0)
-            sandwiches.pop(0)
-            return self.countStudents(students, sandwiches)
-        else:
-            removed_student = students.pop(0)
-            students.append(removed_student)
-            return self.countStudents(students, sandwiches)
         
