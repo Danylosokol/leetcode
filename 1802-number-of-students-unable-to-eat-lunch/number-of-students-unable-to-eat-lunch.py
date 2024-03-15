@@ -6,12 +6,18 @@ class Solution:
         if not sandwiches:
             return len(students)
 
-        for i in range(len(students)):
-            student = students[i]
-            studentsCounter[student] = studentsCounter.get(student, 0) + 1
-        print("I after while:")
+        requiredStudent = 0 if sandwiches[0] == 0 else 1
+        i = 0
+        while i < len(students):
+            # student = students[i]
+            # studentsCounter[student] = studentsCounter.get(student, 0) + 1
+            if students[i] == requiredStudent:
+                break
+            i += 1
 
-        if (0 not in studentsCounter and sandwiches[0] == 0) or (1 not in studentsCounter and sandwiches[0] == 1):
+        # if (0 not in studentsCounter and sandwiches[0] == 0) or (1 not in studentsCounter and sandwiches[0] == 1):
+        #     return len(students)
+        if i == len(students):
             return len(students)
 
         if students[0] == sandwiches[0]:
