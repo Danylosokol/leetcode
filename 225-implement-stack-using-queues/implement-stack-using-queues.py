@@ -19,18 +19,12 @@ class MyStack:
 
     def top(self) -> int:
         temp_queue = deque([])
-        print("in top:")
-        print(self.queue)
         while len(self.queue) > 1:
             temp_queue.append(self.queue.popleft())
-            print("temp_queue in while loop:")
-            print(temp_queue)
         result = self.queue.popleft()
         temp_queue.append(result)
         while len(temp_queue):
             self.queue.append(temp_queue.popleft())
-        print("end of top:")
-        print(self.queue)
         return result
 
     def empty(self) -> bool:
