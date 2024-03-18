@@ -22,10 +22,13 @@ class Solution:
             else:
                 result.next = left_pointer
             return result_head.next
-        
-        final_result = None
-        for i in range(len(lists)):
-            final_result = merge(final_result, lists[i])
+        if not lists:
+            return
+
+        final_result = lists[0]
+        if len(lists) > 1:
+            for i in range(1, len(lists)):
+                final_result = merge(final_result, lists[i])
         return final_result
 
         
