@@ -1,4 +1,6 @@
 class Solution:
+
+    # Merge sort O(nlogn)
     def sortArray(self, nums: List[int]) -> List[int]:
 
         def mergeSort(nums: List[int], s: int, e: int) -> List[int]:
@@ -13,7 +15,7 @@ class Solution:
 
             left_part = nums[s:m + 1]
             right_part = nums[m+1:e+1]
-            
+
             left_pointer = 0
             right_pointer = 0
             main_pointer = s
@@ -42,6 +44,7 @@ class Solution:
         mergeSort(nums, 0, len(nums) - 1)
         return nums
 
+    # Insertion sort O(n^2)
     def insertionSort(self, nums: List[int]) -> List[int]:
         for i in range(len(nums)):
             j = i - 1
