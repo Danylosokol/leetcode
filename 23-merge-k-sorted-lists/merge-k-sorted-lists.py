@@ -26,9 +26,8 @@ class Solution:
             return
 
         final_result = lists[0]
-        if len(lists) > 1:
-            for i in range(1, len(lists)):
-                final_result = merge(final_result, lists[i])
+        for i in range(1, len(lists)):
+            final_result = merge(final_result, lists[i])
         return final_result
 
         
