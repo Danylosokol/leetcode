@@ -8,6 +8,7 @@ class Solution:
         def merge(left_pointer, right_pointer) -> [ListNode]:
             result = ListNode(None)
             result_head = result
+
             while left_pointer != None and right_pointer != None:
                 if left_pointer.val <= right_pointer.val:
                     result.next = left_pointer
@@ -17,11 +18,14 @@ class Solution:
                     result.next = right_pointer
                     result = result.next
                     right_pointer = right_pointer.next
+
             if left_pointer == None:
                 result.next = right_pointer
             else:
                 result.next = left_pointer
             return result_head.next
+
+            
         if not lists:
             return
 
