@@ -3,16 +3,7 @@ class Solution:
     # Merge sort O(nlogn)
     def sortArray(self, nums: List[int]) -> List[int]:
 
-        def mergeSort(nums: List[int], s: int, e: int) -> List[int]:
-
-            if e - s <= 0:
-                return nums
-            
-            m = (s + e)//2
-
-            mergeSort(nums, s, m)
-            mergeSort(nums, m + 1, e)
-
+        def merge(nums, s, m, e):
             left_part = nums[s:m + 1]
             right_part = nums[m+1:e+1]
 
@@ -30,19 +21,29 @@ class Solution:
                     main_pointer += 1
                     right_pointer += 1
 
-            if left_pointer >= len(left_part):
-                while right_pointer < len(right_part):
-                    nums[main_pointer] = right_part[right_pointer]
-                    main_pointer += 1
-                    right_pointer += 1
-            else:
-                while left_pointer < len(left_part):
-                    nums[main_pointer] = left_part[left_pointer]
-                    main_pointer += 1
-                    left_pointer += 1
+            while right_pointer < len(right_part):
+                nums[main_pointer] = right_part[right_pointer]
+                main_pointer += 1
+                right_pointer += 1
+            while left_pointer < len(left_part):
+                nums[main_pointer] = left_part[left_pointer]
+                main_pointer += 1
+                left_pointer += 1
+
+        def mergeSortHelper(nums: List[int], s: int, e: int) -> List[int]:
+            if e - s <= 0:
+                return nums
+            
+            m = (s + e)//2
+
+            mergeSortHelper(nums, s, m)
+            mergeSortHelper(nums, m + 1, e)
+
+            merge(nums, s, m, e)
+
+            return nums
         
-        mergeSort(nums, 0, len(nums) - 1)
-        return nums
+        return mergeSortHelper(nums, 0, len(nums) - 1)
 
     # Insertion sort O(n^2)
     def insertionSort(self, nums: List[int]) -> List[int]:
