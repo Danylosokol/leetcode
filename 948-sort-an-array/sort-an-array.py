@@ -16,7 +16,7 @@ class Solution:
         
         return quickSortHelper(nums)
 
-        # def quickSortHelper(arr, s, e):
+        # def quickSortHelperTLE(arr, s, e):
         #     if e - s + 1 <= 1:
         #         return arr
             
@@ -28,18 +28,18 @@ class Solution:
         #     j = s #slow pointer
 
         #     for i in range(s, e):
-        #         if arr[i] < pivot:
+        #         if arr[i] <= pivot:
         #             arr[j], arr[i] = arr[i], arr[j]
         #             j += 1
 
         #     arr[j], arr[e] = pivot, arr[j]
 
-        #     quickSortHelper(arr, s, j-1)
-        #     quickSortHelper(arr, j+1, e)
+        #     quickSortHelperTLE(arr, s, j - 1)
+        #     quickSortHelperTLE(arr, j+1, e)
 
         #     return arr
         
-        # return quickSortHelper(nums, 0, len(nums) - 1)
+        # return quickSortHelperTLE(nums, 0, len(nums) - 1)
 
     # Merge sort O(nlogn)
     def mergeSort(self, nums: List[int]) -> List[int]:
