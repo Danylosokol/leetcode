@@ -1,7 +1,7 @@
 class Solution:
     def findKthLargest(self, nums: List[int], k: int) -> int:
-        sorted_nums = self.mergeSort(nums, 0, len(nums) - 1)
-        return sorted_nums[-k]
+        self.mergeSort(nums, 0, len(nums) - 1)
+        return nums[-k]
 
     def mergeSort(self, nums, s, e):
         if e - s + 1 <= 1:
