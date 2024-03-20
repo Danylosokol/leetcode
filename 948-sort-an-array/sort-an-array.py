@@ -1,7 +1,48 @@
 class Solution:
 
-    # Merge sort O(nlogn)
     def sortArray(self, nums: List[int]) -> List[int]:
+        def quickSortHelper(nums):
+            if len(nums) <= 1: return nums
+
+            pivot = random.choice(nums)
+            less_than, equal_to, greater_than = [], [], []
+
+            for val in nums:
+                if val < pivot: less_than.append(val)
+                elif val > pivot: greater_than.append(val)
+                else: equal_to.append(val)
+            
+            return quickSortHelper(less_than) + equal_to + quickSortHelper(greater_than)
+        
+        return quickSortHelper(nums)
+
+        # def quickSortHelper(arr, s, e):
+        #     if e - s + 1 <= 1:
+        #         return arr
+            
+        #     # place a mid element to the end of array to use it as a pivot
+        #     m = (s + e)//2
+        #     arr[m], arr[e] = arr[e], arr[m]
+
+        #     pivot = arr[e]
+        #     j = s #slow pointer
+
+        #     for i in range(s, e):
+        #         if arr[i] < pivot:
+        #             arr[j], arr[i] = arr[i], arr[j]
+        #             j += 1
+
+        #     arr[j], arr[e] = pivot, arr[j]
+
+        #     quickSortHelper(arr, s, j-1)
+        #     quickSortHelper(arr, j+1, e)
+
+        #     return arr
+        
+        # return quickSortHelper(nums, 0, len(nums) - 1)
+
+    # Merge sort O(nlogn)
+    def mergeSort(self, nums: List[int]) -> List[int]:
 
         def merge(nums, s, m, e):
             left_part = nums[s:m + 1]
