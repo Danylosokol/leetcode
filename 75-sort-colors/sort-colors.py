@@ -11,5 +11,5 @@ class Solution:
                 nums[idx] = i
                 idx += 1
         
-
+    
         
