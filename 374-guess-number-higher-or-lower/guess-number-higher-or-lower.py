@@ -5,12 +5,13 @@
 #          otherwise return 0
 # def guess(num: int) -> int:
 
+
 class Solution:
     def guessNumber(self, n: int) -> int:
         l, r = 1, n
 
         while l <= r:
-            m = l + ((r - l )//2)
+            m = l + ((r - l) // 2)
 
             if guess(m) > 0:
                 l = m + 1
@@ -18,5 +19,5 @@ class Solution:
                 r = m - 1
             else:
                 return m
-        
+
         return -1
