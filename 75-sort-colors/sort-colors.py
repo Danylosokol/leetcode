@@ -1,22 +1,21 @@
 class Solution:
     def sortColors(self, nums: List[int]) -> None:
-        pivot_r = 2
         pivot_l = 0
+        pivot_r = 2
 
         l = 0
         r = len(nums) - 1
-        i = 0
+        idx = 0
 
-        while i < len(nums) and i <= r:
-            if nums[i] == pivot_l:
-                nums[i], nums[l] = nums[l], nums[i]
+        while idx <= r:
+            if nums[idx] == pivot_l:
+                nums[idx], nums[l] = nums[l], nums[idx]
                 l += 1
-                i += 1
-            elif nums[i] == pivot_r:
-                nums[i], nums[r] = nums[r], nums[i]
+            elif nums[idx] == pivot_r:
+                nums[idx], nums[r] = nums[r], nums[idx] 
                 r -= 1
-            else:
-                i += 1
+                continue   
+            idx += 1
             
             
     
