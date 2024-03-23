@@ -7,7 +7,7 @@ class Solution:
 
         while l <= r:
             m = (l + r)//2
-            print(m)
+            
             if isBadVersion(m) and m == l:
                 return m
             elif isBadVersion(m) and not isBadVersion(m - 1):
