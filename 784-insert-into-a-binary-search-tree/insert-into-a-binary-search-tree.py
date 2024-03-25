@@ -11,7 +11,7 @@ class Solution:
         
         if root.val < val:
             root.right = self.insertIntoBST(root.right, val)
-        elif root.val > val:
+        else:
             root.left = self.insertIntoBST(root.left, val)
         
         return root
