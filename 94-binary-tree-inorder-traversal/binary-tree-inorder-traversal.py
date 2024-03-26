@@ -11,9 +11,13 @@ class Solution:
 
         while curr or stack:
             while curr:
+                print("adding to stack:")
+                print(curr.val)
                 stack.append(curr)
                 curr = curr.left
             curr = stack.pop()
+            print("popping from the stack and adding to the result array:")
+            print(curr.val)
             result.append(curr.val)
             curr = curr.right
         
