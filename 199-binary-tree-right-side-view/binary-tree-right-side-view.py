@@ -13,8 +13,6 @@ class Solution:
             queue.append(root)
 
         while len(queue):
-            print("level.....")
-            print(len(queue))
             queueLen = len(queue)
             for i in range(queueLen):
                 node = queue.popleft()
