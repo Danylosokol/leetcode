@@ -16,7 +16,6 @@ class Solution:
             queueLen = len(queue)
             for i in range(queueLen):
                 node = queue.popleft()
-                print(node)
                 if i == queueLen - 1:
                     result.append(node.val)
                 if node.left:
