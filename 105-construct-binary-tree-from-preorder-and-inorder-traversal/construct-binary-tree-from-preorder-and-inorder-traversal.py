@@ -11,10 +11,8 @@ class Solution:
         
         root = TreeNode(preorder[0])
 
-        i = 0
-        while inorder[i] != root.val:
-            i += 1
-
+        i = inorder.index(root.val)
+        
         root.left = self.buildTree(preorder[1:i+1], inorder[:i])
         root.right = self.buildTree(preorder[i+1:], inorder[i+1:])
         return root
