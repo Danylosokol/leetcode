@@ -11,9 +11,10 @@ class Solution:
 
         if root:
             queue.append(root)
-
-        while len(queue):
+        
+        while queue:
             right_most = None
+
             for _ in range(len(queue)):
                 node = queue.popleft()
                 right_most = node
@@ -21,6 +22,8 @@ class Solution:
                     queue.append(node.left)
                 if node.right:
                     queue.append(node.right)
-            result.append(right_most.val)
-
+            
+            if right_most:
+                result.append(right_most.val)
+        
         return result
