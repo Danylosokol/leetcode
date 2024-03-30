@@ -1,9 +1,17 @@
 class Solution:
     def subsets(self, nums: List[int]) -> List[List[int]]:
-        if not nums: return [[]]
+        result = []
+        subset = []
 
-        num = nums[0]
-        subsets_without_num = self.subsets(nums[1:])
-        subsets_with_num = [[num] + subset for subset in subsets_without_num]
+        def dfs(indx):
+            if indx >= len(nums):
+                return result.append(subset[:])
+            
+            subset.append(nums[indx])
+            dfs(indx + 1)
 
-        return subsets_without_num + subsets_with_num
+            subset.pop()
+            dfs(indx + 1)
+
+        dfs(0)
+        return result
