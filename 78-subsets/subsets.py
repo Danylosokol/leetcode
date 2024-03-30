@@ -6,7 +6,7 @@ class Solution:
         def dfs(indx):
             if indx >= len(nums):
                 return result.append(subset[:])
-            
+
             subset.append(nums[indx])
             dfs(indx + 1)
 
