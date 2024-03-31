@@ -2,12 +2,18 @@ class Solution:
     def subsets(self, nums: List[int]) -> List[List[int]]:
         result = []
 
-        def dfs(indx, subset):
-            if indx >= len(nums):
-                return result.append(subset)
+        curr = []
 
-            dfs(indx + 1, subset)
-            dfs(indx + 1, subset + [nums[indx]])
-
-        dfs(0, [])
+        def dfs(idx, curr):
+            if idx >= len(nums):
+                result.append(curr[:])
+                return
+            
+            curr.append(nums[idx])
+            idx += 1
+            dfs(idx, curr)
+            curr.pop()
+            dfs(idx, curr)
+        
+        dfs(0, curr)
         return result
