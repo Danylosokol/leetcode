@@ -2,17 +2,18 @@ class Solution:
     def combinationSum(self, candidates: List[int], target: int) -> List[List[int]]:
         result = []
 
-        def backtracking(indx, subarray):
-            if indx >= len(candidates) or sum(subarray) > target:
+        def backtracking(indx, subarray, curr_sum):
+            if indx >= len(candidates) or curr_sum > target:
                 return
             val = candidates[indx]
             subarray.append(val)
+            curr_sum += val
 
-            if sum(subarray) == target:
+            if curr_sum == target:
                 result.append(subarray)
             
-            backtracking(indx, subarray[:])
-            backtracking(indx + 1, subarray[:-1])
+            backtracking(indx, subarray[:], curr_sum)
+            backtracking(indx + 1, subarray[:-1], curr_sum - val)
 
-        backtracking(0, [])
+        backtracking(0, [], 0)
         return result
