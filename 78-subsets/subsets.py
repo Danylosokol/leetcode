@@ -1,7 +1,6 @@
 class Solution:
     def subsets(self, nums: List[int]) -> List[List[int]]:
         result = []
-
         curr = []
 
         def dfs(idx, curr):
@@ -10,10 +9,9 @@ class Solution:
                 return
             
             curr.append(nums[idx])
-            idx += 1
-            dfs(idx, curr)
+            dfs(idx + 1, curr)
             curr.pop()
-            dfs(idx, curr)
+            dfs(idx + 1, curr)
         
-        dfs(0, curr)
+        dfs(0, [])
         return result
