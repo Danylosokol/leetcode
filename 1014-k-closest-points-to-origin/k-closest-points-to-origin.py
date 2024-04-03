@@ -3,7 +3,7 @@ class Solution:
         heap = []
         origin = [0, 0]
         for point in points:
-            heapq.heappush(heap, (self.distance(origin, point), point))
+            heapq.heappush(heap, (sqrt(point[0]**2 + point[1]**2), point))
         res = []
         while k > 0:
             res.append(heapq.heappop(heap)[1])
