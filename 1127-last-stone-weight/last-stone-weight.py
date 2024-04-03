@@ -6,15 +6,6 @@ class Solution:
         while len(stones) > 1:
             stone_1 = heapq._heappop_max(stones)
             stone_2 = heapq._heappop_max(stones)
-            print("stone_1:")
-            print(stone_1)
-            print("stone_2:")
-            print(stone_2)
-            print("current stones:")
-            print(stones)
-            print("length:")
-            print(len(stones))
-            print("--------------")
             if stone_1 - stone_2 > 0:
                 heapq.heappush(stones, stone_1 - stone_2)
                 heapq._heapify_max(stones)
