@@ -5,6 +5,6 @@ class Solution:
             stone_1 = heapq._heappop_max(stones)
             stone_2 = heapq._heappop_max(stones)
             if stone_1 - stone_2 > 0:
-                heapq.heappush(stones, stone_1 - stone_2)
+                stones.append(stone_1 - stone_2)
                 heapq._heapify_max(stones)
         return heapq._heappop_max(stones) if len(stones) > 0 else 0
