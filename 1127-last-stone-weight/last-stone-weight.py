@@ -9,4 +9,4 @@ class Solution:
             if stone_1 - stone_2 != 0:
                 heapq.heappush(stones, stone_1 - stone_2)
             
-        return heapq.heappop(stones) * -1 if len(stones) > 0 else 0
+        return -heapq.heappop(stones) if len(stones) > 0 else 0
