@@ -1,11 +1,9 @@
 class Solution:
     def twoSum(self, nums: List[int], target: int) -> List[int]:
-        remainers = {}
+        reminders = {}
 
-        for i in range(len(nums)):
-            if nums[i] not in remainers:
-                remainers[target - nums[i]] = i
+        for i, val in enumerate(nums):
+            if val not in reminders:
+                reminders[target - val] = i
             else:
-                return[remainers[nums[i]], i]
-        
-        return [0, 0]
+                return [reminders[val], i]
