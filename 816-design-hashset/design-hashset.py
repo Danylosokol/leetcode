@@ -1,64 +1,45 @@
+class ListNode:
+    def __init__(self, key):
+        self.key = key
+        self.next = None
+
 class MyHashSet:
 
     def __init__(self):
-        self.set = [None, None]
-        self.capacity = 2
-        self.size = 0
-        
-    def hash(self, key):
-        return key%self.capacity
-    
-    def rehash(self):
-        self.capacity = 2*self.capacity
-        oldSet = self.set[:]
-        newSet = []
-        for indx in range(self.capacity):
-            newSet.append(None)
-        self.set = newSet
-        self.size = 0
-        for val in oldSet:
-            if val:
-                self.add(val)
+        self.set = [ListNode(0) for i in range(10 ** 4)]
 
     def add(self, key: int) -> None:
-        index = self.hash(key)
-        while True:
-            if self.set[index] == None:
-                self.set[index] = key
-                self.size += 1
-                if self.size > self.capacity//2:
-                    self.rehash()
-                return
-            elif self.set[index] == key:
-                return
+        index = key % len(self.set)
 
-            index += 1
-            index = index%self.capacity
+        curr = self.set[index]
+        while curr.next:
+            if curr.next.key == key:
+                return
+            curr = curr.next
+
+        curr.next = ListNode(key)
 
     def remove(self, key: int) -> None:
-        if not self.contains(key):
-            return
-        index = self.hash(key)
-        while True:
-            if self.set[index] == key:
-                self.set[index] = None
-                self.size -= 1
+        index = key % len(self.set)
+
+        curr = self.set[index]
+        while curr.next:
+            if curr.next.key == key:
+                curr.next = curr.next.next
                 return
-            index += 1
-            index = index%self.capacity
+            curr = curr.next
 
     def contains(self, key: int) -> bool:
-        initialIndex = self.hash(key)
-        if self.set[initialIndex] == key:
+        index = key % len(self.set)
+        curr = self.set[index]
+
+        while curr.next:
+            if curr.next.key == key:
                 return True
-        index = initialIndex + 1
-        index = index%self.capacity
-        while index != initialIndex:
-            if self.set[index] == key:
-                return True
-            index += 1
-            index = index%self.capacity
+            curr = curr.next
+        
         return False
+
 
 # Your MyHashSet object will be instantiated and called as such:
 # obj = MyHashSet()
