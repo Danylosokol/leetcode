@@ -7,7 +7,7 @@ class ListNode:
 class MyHashMap:
 
     def __init__(self):
-        self.hashmap = [ListNode(0, 0) for i in range(10**4)]
+        self.hashmap = [ListNode(0, 0) for i in range(10**3)]
 
     def put(self, key: int, value: int) -> None:
         index = key%len(self.hashmap)
