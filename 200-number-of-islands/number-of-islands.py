@@ -14,7 +14,6 @@ class Solution:
             dfs(visited, r-1, c)
             dfs(visited, r, c+1)
             dfs(visited, r, c-1)
-            # visited.remove((r, c))
             
         for i in range(len(grid)):
             for j in range(len(grid[i])):
