@@ -6,10 +6,10 @@ class Solution:
         numOfColls = len(grid[0])
 
         def dfs(visited, r, c):
-            if min(r, c) < 0 or r == numOfRow or c == numOfColls or (r, c) in visited or grid[r][c] == "0":
-                ilandSpots.update(visited)
+            if min(r, c) < 0 or r == numOfRow or c == numOfColls or (r, c) in ilandSpots or grid[r][c] == "0":
+                # ilandSpots.update(visited)
                 return
-            visited.add((r, c))
+            ilandSpots.add((r, c))
             dfs(visited, r+1, c)
             dfs(visited, r-1, c)
             dfs(visited, r, c+1)
