@@ -23,9 +23,6 @@ class Solution:
         for r in range(rows):
             for c in range(cols):
                 if grid[r][c] == 1 and (r, c) not in visited:
-                    print("---------------")
-                    print("running bfs at:")
-                    print([r, c])
                     size = dfs(r, c)
                     max_size = max(size, max_size)
         
