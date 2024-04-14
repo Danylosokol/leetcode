@@ -19,8 +19,8 @@ class Solution:
                 r, c = queue.popleft()
                 for dr, dc in directions:
                     new_row, new_col = r + dr, c + dc
-                    if (new_row < 0 or new_row >= rows or 
-                        new_col < 0 or new_col >= cols or 
+                    if (new_row not in range(rows) or 
+                        new_col not in range(cols) or 
                         grid[new_row][new_col] != 1):
                         continue
                     grid[new_row][new_col] = 2
