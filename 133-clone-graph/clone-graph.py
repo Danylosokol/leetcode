@@ -9,22 +9,15 @@ class Node:
 from typing import Optional
 class Solution:
     def cloneGraph(self, node: Optional['Node']) -> Optional['Node']:
-        if not node:
-            return None
-        adjacencyList = {}
-        queue = deque([node])
-        root = None
-        while queue:
-            cur = queue.popleft()
-            if cur.val not in adjacencyList:
-                adjacencyList[cur.val] = Node(cur.val, [])
-                if not root:
-                    root = adjacencyList[cur.val]
-            for neighbor in cur.neighbors:
-                if neighbor.val not in adjacencyList:
-                    queue.append(neighbor)
-                    adjacencyList[neighbor.val] = Node(neighbor.val, [])
-                neighbor = adjacencyList[neighbor.val]
-                adjacencyList[cur.val].neighbors.append(neighbor)
-        return root
-        
+        clonedGraph = {}
+
+        def dfs(node):
+            if node.val in clonedGraph:
+                return clonedGraph[node.val]
+            copy = Node(node.val, [])
+            clonedGraph[copy.val] = copy
+            for neighbor in node.neighbors:
+                copy.neighbors.append(dfs(neighbor))
+            return copy
+
+        return dfs(node) if node else None
