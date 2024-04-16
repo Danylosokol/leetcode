@@ -24,8 +24,7 @@ class Solution:
                     root = adjacencyList[cur.val]
             for neighbor in cur.neighbors:
                 if neighbor.val not in adjacencyList:
-                    if neighbor not in visited:
-                        queue.append(neighbor)
+                    queue.append(neighbor)
                     adjacencyList[neighbor.val] = Node(neighbor.val, [])
                 neighbor = adjacencyList[neighbor.val]
                 adjacencyList[cur.val].neighbors.append(neighbor)
