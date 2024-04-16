@@ -9,7 +9,6 @@ class Node:
 from typing import Optional
 class Solution:
     def cloneGraph(self, node: Optional['Node']) -> Optional['Node']:
-        print(node)
         if not node:
             return None
         adjacencyList = {}
