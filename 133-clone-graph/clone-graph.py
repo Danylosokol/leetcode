@@ -12,12 +12,10 @@ class Solution:
         if not node:
             return None
         adjacencyList = {}
-        visited = set()
         queue = deque([node])
         root = None
         while queue:
             cur = queue.popleft()
-            visited.add(cur)
             if cur.val not in adjacencyList:
                 adjacencyList[cur.val] = Node(cur.val, [])
                 if not root:
