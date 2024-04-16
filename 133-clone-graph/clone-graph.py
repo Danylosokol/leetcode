@@ -26,10 +26,8 @@ class Solution:
                 if neighbor.val not in adjacencyList:
                     if neighbor not in visited:
                         queue.append(neighbor)
-                    neighbor = Node(neighbor.val, [])
-                    adjacencyList[neighbor.val] = neighbor
-                else:
-                    neighbor = adjacencyList[neighbor.val]
+                    adjacencyList[neighbor.val] = Node(neighbor.val, [])
+                neighbor = adjacencyList[neighbor.val]
                 adjacencyList[cur.val].neighbors.append(neighbor)
         return root
         
