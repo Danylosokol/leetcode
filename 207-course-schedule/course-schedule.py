@@ -32,7 +32,5 @@ class Solution:
             if node[0] == node[1] or dfs_check(node[1], node[0], graph, []):
                 return False
             graph[node[0]].append(node[1])
-        print(graph)
-        print(takenCourses)
         return True
     
