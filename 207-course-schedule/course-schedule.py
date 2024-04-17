@@ -8,15 +8,13 @@ class Solution:
             visited.append(parent)
             if child in graph[parent]:
                 return True
-            result = False
             for node in graph[parent]:
                 if node in visited:
                     continue
-                result = dfs_check(node, child, graph, visited)
-                if result:
-                    return result
+                if dfs_check(node, child, graph, visited):
+                    return True
             
-            return result
+            return False
 
         for node in prerequisites:
             if node[0] not in graph:
