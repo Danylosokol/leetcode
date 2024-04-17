@@ -6,11 +6,6 @@ class Solution:
 
         def dfs_check(parent, child, graph, visited):
             visited.append(parent)
-            print("checking:")
-            print(child)
-            print("in")
-            print(parent)
-            print(graph[parent])
             if child in graph[parent]:
                 return True
             result = False
