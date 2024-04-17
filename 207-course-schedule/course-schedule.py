@@ -1,34 +1,29 @@
 class Solution:
     def canFinish(self, numCourses: int, prerequisites: List[List[int]]) -> bool:
-        graph = {}
+        hashMap = {i:[] for i in range(numCourses)}
+
+        for course, prereq in prerequisites:
+            hashMap[course].append(prereq)
         
-        takenCourses = 0
+        visited = set()
 
-        def dfs_check(parent, child, graph, visited):
-            visited.append(parent)
-            if child in graph[parent]:
-                return True
-            for node in graph[parent]:
-                if node in visited:
-                    continue
-                if dfs_check(node, child, graph, visited):
-                    return True
-            
-            return False
-
-        for node in prerequisites:
-            if node[0] not in graph:
-                graph[node[0]] = []
-                takenCourses += 1
-                if takenCourses > numCourses:
-                    return False
-            if node[1] not in graph:
-                graph[node[1]] = []
-                takenCourses += 1
-                if takenCourses > numCourses:
-                    return False
-            if node[0] == node[1] or dfs_check(node[1], node[0], graph, []):
+        def dfs(course):
+            if course in visited:
                 return False
-            graph[node[0]].append(node[1])
+            
+            if hashMap[course] == []:
+                return True
+            
+            visited.add(course)
+            for prereq in hashMap[course]:
+                if not dfs(prereq):
+                    return False
+            visited.remove(course)
+            hashMap[course] = []
+            return True
+        
+        for course in hashMap:
+            if not dfs(course):
+                return False
+        
         return True
-    
