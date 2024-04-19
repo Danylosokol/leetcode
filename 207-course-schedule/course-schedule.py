@@ -1,7 +1,7 @@
 class Solution:
     def canFinish(self, numCourses: int, prerequisites: List[List[int]]) -> bool:
         hashMap = {i: [] for i in range(numCourses)}
-        
+
         for course, prereq in prerequisites:
             hashMap[course].append(prereq)
         
@@ -17,10 +17,10 @@ class Solution:
             for prereq in hashMap[course]:
                 if not dfs(prereq):
                     return False
+            
             visited.remove(course)
             hashMap[course] = []
             return True
-
         
         for course in hashMap:
             if not dfs(course):
