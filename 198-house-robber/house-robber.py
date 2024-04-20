@@ -2,12 +2,12 @@ class Solution:
     def rob(self, nums: List[int]) -> int:
         if not nums: return 0
 
-        memo = [0 for _ in range(len(nums) + 1)]
-        memo[0] = 0
-        memo[1] = nums[0]
+        prev1 = 0
+        prev2 = 0
 
-        for i in range(1, len(nums)):
-            val = nums[i]
-            memo[i + 1] = max(memo[i], memo[i - 1] + val)
+        for num in nums:
+            temp = max(prev1 + num, prev2)
+            prev1 = prev2
+            prev2 = temp
         
-        return memo[-1]
+        return prev2
