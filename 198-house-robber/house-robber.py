@@ -9,5 +9,5 @@ class Solution:
             temp = max(prev1 + num, prev2)
             prev1 = prev2
             prev2 = temp
-        
+
         return prev2
