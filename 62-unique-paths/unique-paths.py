@@ -9,6 +9,5 @@ class Solution:
                 curr_row[c] = prev_row[c] + curr_row[c+1]
             prev_row = curr_row
 
-        print(prev_row)
         return prev_row[0]
     
