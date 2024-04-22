@@ -2,12 +2,13 @@ class Solution:
     def climbStairs(self, n: int) -> int:
         if n <= 3:
             return n
-        dp1 = 1
-        dp2 = 1
+
+        step1 = 1
+        step2 = 1
 
         for i in range(n):
-            temp = dp1 + dp2
-            dp2 = dp1
-            dp1 = temp
+            temp = step1 + step2
+            step2 = step1
+            step1 = temp
         
-        return dp2
+        return step2
