@@ -1,16 +1,13 @@
 class Solution:
     def rob(self, nums: List[int]) -> int:
         if not nums: return 0
-        # house before previous
+
         prev1 = 0
-        # previsous house
         prev2 = 0
 
-        # [prev1, prev2, num, num+1, num+2...]
-        for num in nums:
-            # compute max that we can rob up until current house
-            temp = max(prev1 + num, prev2)
+        for n in nums:
+            temp = max(prev1 + n, prev2)
             prev1 = prev2
             prev2 = temp
-
+        
         return prev2
