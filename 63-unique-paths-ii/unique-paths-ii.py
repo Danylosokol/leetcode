@@ -20,9 +20,7 @@ class Solution:
                     curr_row[c] = 0
                     continue
                 curr_row[c] = prev_row[c] + curr_row[c + 1]
-            print("new_row:")
-            print(r)
-            print(curr_row)
+ 
             prev_row = curr_row
 
         return prev_row[0]
