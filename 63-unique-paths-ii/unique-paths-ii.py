@@ -17,8 +17,7 @@ class Solution:
                     curr_row[c] = 0
                 else:
                     curr_row[c] = prev_row[c] + curr_row[c+1]
-            print("current row:")
-            print(curr_row)
+                    
             prev_row = curr_row
         
         return prev_row[0]
