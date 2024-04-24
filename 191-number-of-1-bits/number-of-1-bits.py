@@ -5,4 +5,4 @@ class Solution:
             if n & 1:
                 result += 1
             n = n >> 1
-        return result 
+        return result
