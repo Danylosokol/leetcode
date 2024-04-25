@@ -3,7 +3,7 @@ class Solution:
         dp = [0] * (n + 1)
         offset = 1
         for i in range(1, n + 1):
-            if i == offset * 2:
+            if 2 * offset == i:
                 offset = i
             dp[i] = 1 + dp[i - offset]
         
