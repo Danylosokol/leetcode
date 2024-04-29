@@ -4,13 +4,11 @@ class Solution:
         result = 0
         L = 0
 
-        for R in range(len(arr) + 1):
+        for R in range(len(arr)):
             if R - L + 1 > k:
-                average = currSum / k
-                if average >= threshold:
-                    result += 1
                 currSum -= arr[L]
                 L += 1
-            if R < len(arr):
-                currSum += arr[R]
+            currSum += arr[R]
+            if (R - L + 1 == k) and ((currSum / k) >= threshold):
+                result += 1
         return result
