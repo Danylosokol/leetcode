@@ -9,6 +9,6 @@ class Solution:
                 currSum -= arr[L]
                 L += 1
             currSum += arr[R]
-            if (R - L + 1 == k) and ((currSum / k) >= threshold):
+            if R - L + 1 == k and (currSum / k) >= threshold:
                 result += 1
         return result
