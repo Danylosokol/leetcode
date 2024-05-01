@@ -8,7 +8,7 @@ class Solution:
             while s[R] in visitedChars:
                 visitedChars.remove(s[L])
                 L += 1
+            result =  max(result, R - L + 1)
             visitedChars.add(s[R])
-            result = max(result, R - L + 1)
         
         return result
