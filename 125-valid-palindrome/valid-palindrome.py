@@ -7,8 +7,6 @@ class Solution:
                 s[L] = s[R].lower()
                 L += 1
         s = s[:L]
-        print("sanitised string:")
-        print(s)
         L, R = 0, len(s) - 1
         while L <= R:
             if s[L] != s[R]:
