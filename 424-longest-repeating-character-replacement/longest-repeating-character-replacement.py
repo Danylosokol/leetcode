@@ -6,8 +6,6 @@ class Solution:
 
         for R in range(len(s)):
             count[s[R]] = 1 + count.get(s[R], 0)
-            print("count is")
-            print(count)
             while R - L + 1 - max(count.values()) > k:
                 count[s[L]] -= 1
                 L += 1
