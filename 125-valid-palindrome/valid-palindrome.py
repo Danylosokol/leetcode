@@ -9,12 +9,6 @@ class Solution:
                 R -= 1
             
             if s[L].lower() != s[R].lower():
-                print("L is:")
-                print(L)
-                print(s[L])
-                print("R is:")
-                print(R)
-                print(s[R])
                 return False
             L += 1
             R -= 1
