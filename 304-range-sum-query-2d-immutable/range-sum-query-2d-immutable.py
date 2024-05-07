@@ -17,10 +17,7 @@ class NumMatrix:
         for i in range(row1, row2 + 1):
             rightSum = self.matrixPrefix[i][col2]
             leftSum = self.matrixPrefix[i][col1 - 1] if col1 > 0 else 0
-            # print("sum for row:")
-            # print(i)
             sum += rightSum - leftSum
-            # print(sum)
         return sum 
 
 
