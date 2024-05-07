@@ -10,7 +10,6 @@ class NumMatrix:
                 curr += num
                 prefix.append(curr)
             self.matrixPrefix.append(prefix)
-        print(self.matrixPrefix)
 
     def sumRegion(self, row1: int, col1: int, row2: int, col2: int) -> int:
         sum = 0
