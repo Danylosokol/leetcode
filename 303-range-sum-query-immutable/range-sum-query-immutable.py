@@ -7,17 +7,10 @@ class NumArray:
         for num in self.nums:
             total += num
             self.pref.append(total)
-        print(self.pref)
 
     def sumRange(self, left: int, right: int) -> int:
-        print("initial left and right:")
-        print(left)
-        print(right)
         prefRight = self.pref[right]
         prefLeft = self.pref[left - 1] if left > 0 else 0
-        print("pref left and right:")
-        print(prefLeft)
-        print(prefRight)
         return prefRight - prefLeft 
 
 
