@@ -12,8 +12,6 @@ class Solution:
             curr += num
             reversedPrefix.insert(0, curr)
 
-        print(prefix)
-        print(reversedPrefix)
         for i in range(len(nums)):
             if prefix[i] == reversedPrefix[i]:
                 return i
