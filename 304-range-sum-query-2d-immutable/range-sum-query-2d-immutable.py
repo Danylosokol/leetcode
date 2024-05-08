@@ -1,30 +1,24 @@
 class NumMatrix:
 
     def __init__(self, matrix: List[List[int]]):
-        self.matrix = matrix
-        self.prefix = []
-        prevPrefix = [0] * len(matrix[0])
-        for i in range(len(matrix)):
-            curr = 0
-            currPrefix = []
-            for j in range(len(matrix[i])):
-                curr += matrix[i][j]
-                currPrefix.append(curr + prevPrefix[j])
-            self.prefix.append(currPrefix)
-            prevPrefix = currPrefix
-        print(self.prefix)
+        ROWS, COLS = len(matrix), len(matrix[0])
+        self.matrixSum = [[0] * (COLS + 1) for r in range(ROWS + 1)]
+
+        for r in range(ROWS):
+            prefix = 0
+            for c in range(COLS):
+                prefix += matrix[r][c]
+                above = self.matrixSum[r][c + 1]
+                self.matrixSum[r + 1][c + 1] = prefix + above
 
     def sumRegion(self, row1: int, col1: int, row2: int, col2: int) -> int:
-        sumCol1 = 0
-        if row1 > 0:
-            if col1 > 0:
-                sumCol1 = self.prefix[row2][col1 - 1] - self.prefix[row1 - 1][col1 - 1]
-            sumCol2 = self.prefix[row2][col2] - self.prefix[row1 - 1][col2]
-        else:
-            if col1 > 0:
-                sumCol1 = self.prefix[row2][col1 - 1]
-            sumCol2 = self.prefix[row2][col2]          
-        return sumCol2 - sumCol1
+        row1, col1, row2, col2 = row1 + 1, col1 + 1, row2 + 1, col2 + 1
+        bottomRight = self.matrixSum[row2][col2]
+        aboveTopRight = self.matrixSum[row1 - 1][col2]
+        beforeBottomLeft = self.matrixSum[row2][col1 - 1]
+        overlap = self.matrixSum[row1 - 1][col1 - 1]
+
+        return bottomRight - aboveTopRight - beforeBottomLeft + overlap
 
 
 # Your NumMatrix object will be instantiated and called as such:
