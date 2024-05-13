@@ -18,8 +18,6 @@ class Solution:
         maxSum = 0
         while slow:
             currSum = prevSlow.val + slow.val
-            print("slow: " + str(slow.val))
-            print("prevSlow: " + str(prevSlow.val))
             maxSum = max(currSum, maxSum)
             prevSlow = prevSlow.next
             slow = slow.next
