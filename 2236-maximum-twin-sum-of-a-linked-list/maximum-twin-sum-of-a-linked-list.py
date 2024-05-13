@@ -17,9 +17,6 @@ class Solution:
         i = len(history) - 1
         while slow:
             currSum = history[i] + slow.val
-            print("sum of:")
-            print(str(history[i]) + " + " + str(slow.val))
-            print(currSum) 
             maxSum = max(currSum, maxSum)
             slow = slow.next
             i -= 1
