@@ -15,11 +15,10 @@ class Solution:
             prev = slow
             slow = temp
         
-        maxSum = 0 
-
+        maxSum = 0
         while slow:
-            maxSum = max(maxSum, prev.val + slow.val)
-            prev = prev.next
+            maxSum = max(maxSum, slow.val + prev.val)
             slow = slow.next
+            prev = prev.next
         
         return maxSum
