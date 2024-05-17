@@ -9,7 +9,7 @@ class WordDictionary:
         self.root = TrieNode()
 
     def addWord(self, word: str) -> None:
-        curr = self.root
+        curr = self.root 
         for c in word:
             if c not in curr.children:
                 curr.children[c] = TrieNode()
@@ -17,14 +17,14 @@ class WordDictionary:
         curr.word = True
 
     def search(self, word: str) -> bool:
-        
-        def dfs(startIdx, node):
-            curr = node
-            for i in range(startIdx, len(word)):
+
+        def dfs(startNode, currIdx):
+            curr = startNode
+            for i in range(currIdx, len(word)):
                 c = word[i]
                 if c == ".":
                     for child in curr.children.values():
-                        if dfs(i + 1, child):
+                        if dfs(child, i + 1):
                             return True
                     return False
                 else:
@@ -32,8 +32,8 @@ class WordDictionary:
                         return False
                     curr = curr.children[c]
             return curr.word
-
-        return dfs(0, self.root)
+        
+        return dfs(self.root, 0)
 
 
 # Your WordDictionary object will be instantiated and called as such:
