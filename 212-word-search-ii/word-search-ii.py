@@ -14,35 +14,38 @@ class TrieNode:
 class Solution:
     def findWords(self, board: List[List[str]], words: List[str]) -> List[str]:
         root = TrieNode()
+
         for word in words:
             root.addWord(word)
         
         ROWS, COLS = len(board), len(board[0])
-        result = set()
         visited = set()
+        result = set()
 
-        def dfs(r, c, node, word):
+        def dfs(r, c, word, node):
             if(
                 r < 0 or c < 0 or
                 r >= ROWS or c >= COLS or
-                (r, c) in visited or board[r][c] not in node.children
+                (r, c) in visited or board[r][c] not in node.children 
             ):
                 return
             visited.add((r, c))
-            word = word + board[r][c]
+            word += board[r][c]
             node = node.children[board[r][c]]
+
             if node.word:
                 result.add(word)
 
-            dfs(r + 1, c, node, word)
-            dfs(r, c + 1, node, word)
-            dfs(r - 1, c, node, word)
-            dfs(r, c - 1, node, word)
+            dfs(r + 1, c, word, node)
+            dfs(r, c + 1, word, node)
+            dfs(r - 1, c, word, node)
+            dfs(r, c - 1, word, node)
 
             visited.remove((r, c))
         
         for r in range(len(board)):
             for c in range(len(board[r])):
-                dfs(r, c, root, "")
+                dfs(r, c, "", root)
         
         return list(result)
+        
