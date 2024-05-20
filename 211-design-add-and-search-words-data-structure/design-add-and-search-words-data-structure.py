@@ -18,9 +18,9 @@ class WordDictionary:
 
     def search(self, word: str) -> bool:
         
-        def dfs(currIdx, node):
-            curr = node
-            for i in range(currIdx, len(word)):
+        def dfs(currIndx, currNode):
+            curr = currNode
+            for i in range(currIndx, len(word)):
                 c = word[i]
                 if c == ".":
                     for children in curr.children.values():
