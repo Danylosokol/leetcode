@@ -15,13 +15,13 @@ class UnionFind:
             p = self.par[p]
         
         return p
-    
+
     def union(self, x, y):
         px, py = self.find(x), self.find(y)
 
         if px == py:
-            return
-
+            return 
+        
         if self.rank[px] > self.rank[py]:
             self.par[py] = px
             self.rank[px] += self.rank[py]
@@ -40,14 +40,15 @@ class Solution:
                     union.union(i, emails[email])
                 else:
                     emails[email] = i
+        
+        mergedEmails = defaultdict(list)
 
-        merged_emails = defaultdict(list)
         for email, i in emails.items():
             leader = union.find(i)
-            merged_emails[leader].append(email)
-
+            mergedEmails[leader].append(email)
+        
         result = []
-        for i, emails in merged_emails.items():
+        for i, emails in mergedEmails.items():
             name = accounts[i][0]
             result.append([name] + sorted(emails))
         
