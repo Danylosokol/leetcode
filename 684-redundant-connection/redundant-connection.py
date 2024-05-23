@@ -31,7 +31,7 @@ class Union:
 
 class Solution:
     def findRedundantConnection(self, edges: List[List[int]]) -> List[int]:
-        union = Union(len(edges))
+        union = Union(len(edges) + 1)
         for x, y in edges:
             if not union.connect(x, y):
                 return [x, y]
