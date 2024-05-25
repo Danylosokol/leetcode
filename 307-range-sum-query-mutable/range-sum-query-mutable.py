@@ -7,51 +7,49 @@ class SegmentTree:
         self.R = R
 
     @staticmethod
-    def build(nums, L, R):
-        if L == R:
-                return SegmentTree(nums[L], L, R)
-            
-        M = (L + R) // 2
+    def define(nums, L, R):
+        if L == R:  
+            return SegmentTree(nums[L], L, R)
         root = SegmentTree(0, L, R)
-        root.left = SegmentTree.build(nums, L, M)
-        root.right = SegmentTree.build(nums, M + 1, R)
+        mid = (L + R)//2
+        root.left = SegmentTree.define(nums, L, mid)
+        root.right = SegmentTree.define(nums, mid + 1, R)
         root.sum = root.left.sum + root.right.sum
         return root
     
     def update(self, index, val):
         if self.L == self.R:
             self.sum = val
-            return 
-        
-        M = (self.L + self.R) // 2
-        if index > M:
-            self.right.update(index, val)
-        else:
+            return
+        mid = (self.L + self.R) // 2
+        if index <= mid:
             self.left.update(index, val)
+        else:
+            self.right.update(index, val)
         self.sum = self.left.sum + self.right.sum
-
-    def sumRange(self, left, right):
+    
+    def range(self, left, right):
         if self.L == left and self.R == right:
             return self.sum
-        
-        M = (self.L + self.R) // 2
-        if left > M:
-            return self.right.sumRange(left, right)
-        elif right <= M:
-            return self.left.sumRange(left, right)
+        mid = (self.L + self.R) // 2
+        if left > mid:
+            return self.right.range(left, right)
+        elif right <= mid:
+            return self.left.range(left, right)
         else:
-            return self.left.sumRange(left, M) + self.right.sumRange(M + 1, right)
+            return self.left.range(left, mid) + self.right.range(mid + 1, right)
+
 
 class NumArray:
 
     def __init__(self, nums: List[int]):
-        self.segmentTree = SegmentTree.build(nums, 0, len(nums) - 1)
+        self.segTree = SegmentTree.define(nums, 0, len(nums) - 1)
 
     def update(self, index: int, val: int) -> None:
-        self.segmentTree.update(index, val)
+        self.segTree.update(index, val)
 
     def sumRange(self, left: int, right: int) -> int:
-        return self.segmentTree.sumRange(left, right)
+        return self.segTree.range(left, right)
 
 
 # Your NumArray object will be instantiated and called as such:
