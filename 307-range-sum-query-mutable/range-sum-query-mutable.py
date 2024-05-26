@@ -1,4 +1,4 @@
-class SegmentTree:
+class Node:
     def __init__(self, total, L, R):
         self.sum = total
         self.left = None
@@ -6,50 +6,49 @@ class SegmentTree:
         self.L = L
         self.R = R
 
-    @staticmethod
-    def define(nums, L, R):
-        if L == R:  
-            return SegmentTree(nums[L], L, R)
-        root = SegmentTree(0, L, R)
-        mid = (L + R)//2
-        root.left = SegmentTree.define(nums, L, mid)
-        root.right = SegmentTree.define(nums, mid + 1, R)
-        root.sum = root.left.sum + root.right.sum
-        return root
-    
-    def update(self, index, val):
-        if self.L == self.R:
-            self.sum = val
-            return
-        mid = (self.L + self.R) // 2
-        if index <= mid:
-            self.left.update(index, val)
-        else:
-            self.right.update(index, val)
-        self.sum = self.left.sum + self.right.sum
-    
-    def range(self, left, right):
-        if self.L == left and self.R == right:
-            return self.sum
-        mid = (self.L + self.R) // 2
-        if left > mid:
-            return self.right.range(left, right)
-        elif right <= mid:
-            return self.left.range(left, right)
-        else:
-            return self.left.range(left, mid) + self.right.range(mid + 1, right)
-
-
 class NumArray:
 
     def __init__(self, nums: List[int]):
-        self.segTree = SegmentTree.define(nums, 0, len(nums) - 1)
+        self.root = self.build(nums, 0, len(nums) - 1)
+    
+    def build(self, nums, L, R):
+        if L == R:
+            return Node(nums[L], L, R)
+        root = Node(0, L, R)
+        mid = (L + R) // 2
+        root.left = self.build(nums, L, mid)
+        root.right = self.build(nums, mid + 1, R)
+        root.sum = root.left.sum + root.right.sum
+        return root
 
     def update(self, index: int, val: int) -> None:
-        self.segTree.update(index, val)
+        self.root = self.update_helper(self.root, index, val)
+    
+    def update_helper(self, root, index, val):
+        if root.L == root.R:
+            root.sum = val
+            return root
+        mid = (root.L + root.R) // 2
+        if index > mid:
+            root.right = self.update_helper(root.right, index, val)
+        else:
+            root.left = self.update_helper(root.left, index, val)
+        root.sum = root.right.sum + root.left.sum
+        return root
 
     def sumRange(self, left: int, right: int) -> int:
-        return self.segTree.range(left, right)
+        return self.sum_helper(self.root, left, right)
+    
+    def sum_helper(self, root, left, right):
+        if root.L == left and root.R == right:
+            return root.sum
+        mid = (root.L + root.R)//2
+        if left > mid:
+            return self.sum_helper(root.right, left, right)
+        elif right <= mid:
+            return self.sum_helper(root.left, left, right)
+        else:
+            return self.sum_helper(root.left, left, mid) + self.sum_helper(root.right, mid + 1, right)
 
 
 # Your NumArray object will be instantiated and called as such:
