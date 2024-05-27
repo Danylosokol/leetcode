@@ -14,8 +14,9 @@ class MyCalendar:
         if not self.root:
             self.root = Node(start, end)
             return True
-        return self.search(self.root, start, end)
-
+        else:
+            return self.search(self.root, start, end)
+    
     def search(self, root, start, end, parent=None):
         if root:
             if end > root.start and start < root.end:
