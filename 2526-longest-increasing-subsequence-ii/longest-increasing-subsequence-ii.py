@@ -1,6 +1,6 @@
 class Node:
-    def __init__(self, total, L, R):
-        self.sum = total
+    def __init__(self, val, L, R):
+        self.val = val
         self.left = None
         self.right = None
         self.L = L
@@ -24,21 +24,21 @@ class SegmentTree:
     
     def update_helper(self, root, index, val):
         if root.L == root.R:
-            root.sum = val
+            root.val = val
             return
         M = (root.L + root.R) // 2
         if index > M:
             self.update_helper(root.right, index, val)
         else:
             self.update_helper(root.left, index, val)
-        root.sum = max(root.left.sum, root.right.sum)
+        root.val = max(root.left.val, root.right.val)
     
     def query(self, L, R):
         return self.query_helper(self.root, L, R)
     
     def query_helper(self, root, L, R):
         if root.L >= L and root.R <= R:
-            return root.sum
+            return root.val
         M = (root.L + root.R) // 2
         max_value = 0
         if L <= M:
