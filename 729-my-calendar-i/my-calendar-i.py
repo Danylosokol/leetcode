@@ -14,8 +14,7 @@ class MyCalendar:
         if not self.root:
             self.root = Node(start, end)
             return True
-        else:
-            return self.search(self.root, start, end)
+        return self.search(self.root, start, end)
     
     def search(self, root, start, end, parent=None):
         if root:
@@ -27,13 +26,13 @@ class MyCalendar:
                 return self.search(root.right, start, end, root)
         else:
             return self.update(parent, start, end)
-    
+
     def update(self, parent, start, end):
         if end <= parent.start:
             parent.left = Node(start, end)
         else:
             parent.right = Node(start, end)
-        return True
+        return True           
 
 
 # Your MyCalendar object will be instantiated and called as such:
