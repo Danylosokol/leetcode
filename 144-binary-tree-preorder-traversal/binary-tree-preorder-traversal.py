@@ -12,9 +12,8 @@ class Solution:
         while curr or stack:
             if curr:
                 result.append(curr.val)
-                stack.append(curr)
+                stack.append(curr.right)
                 curr = curr.left
             else:
                 curr = stack.pop()
-                curr = curr.right
         return result
