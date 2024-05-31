@@ -7,18 +7,18 @@
 class Solution:
     def postorderTraversal(self, root: Optional[TreeNode]) -> List[int]:
         stack = [root]
-        visited = [False]
+        visit = [False]
         result = []
         while stack:
-            curr, visit = stack.pop(), visited.pop()
+            curr, visited = stack.pop(), visit.pop()
             if curr:
-                if visit:
+                if visited:
                     result.append(curr.val)
                 else:
                     stack.append(curr)
-                    visited.append(True)
+                    visit.append(True)
                     stack.append(curr.right)
-                    visited.append(False)
+                    visit.append(False)
                     stack.append(curr.left)
-                    visited.append(False)
+                    visit.append(False)
         return result
