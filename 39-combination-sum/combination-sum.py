@@ -2,18 +2,18 @@ class Solution:
     def combinationSum(self, candidates: List[int], target: int) -> List[List[int]]:
         result = []
 
-        def dfs(idx, subarray, sum):
-            if sum == target:
-                result.append(subarray[:])
+        def backtracking(i, currSum, combination):
+            if currSum > target:
                 return
-
-            if idx >= len(candidates) or sum > target:
+            if currSum == target:
+                result.append(combination.copy())
                 return
-
-            subarray.append(candidates[idx])
-            dfs(idx, subarray, sum + candidates[idx])
-            subarray.pop()
-            dfs(idx + 1, subarray, sum)
+            if i >= len(candidates):
+                return
+            combination.append(candidates[i])
+            backtracking(i, currSum + candidates[i], combination)
+            combination.pop()
+            backtracking(i + 1, currSum, combination)
         
-        dfs(0, [], 0)
+        backtracking(0, 0, [])
         return result
