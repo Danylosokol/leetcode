@@ -1,32 +1,26 @@
 class Solution:
     def letterCombinations(self, digits: str) -> List[str]:
-        result = []
-        options = []
+        res = []
+        digitToChars = {
+            "2": "abc",
+            "3": "def",
+            "4": "ghi",
+            "5": "jkl",
+            "6": "mno",
+            "7": "pqrs",
+            "8": "tuv",
+            "9": "wxyz"
+        }
 
-        for i in digits:
-            option = []
-            for j in range(3):
-                if int(i) > 7:
-                    option.append(chr(97 + ((int(i) - 2) * 3) + j + 1))
-                else:
-                    option.append(chr(97 + ((int(i) - 2) * 3) + j))
-            if int(i) == 7:
-                option.append(chr(97 + ((int(i) - 2) * 3) + 3))
-            elif int(i) == 9:
-                option.append(chr(97 + ((int(i) - 2) * 3) + 3 + 1))
-            options.append(option)
-
-        def backtrack(i, max, combination):
-            if i == max:
-                if not len(combination):
-                    return
-                result.append("".join(combination.copy()))
+        def backtrack(i, currStr):
+            if len(currStr) == len(digits):
+                res.append(currStr)
                 return
-            
-            for j in range(len(options[i])):
-                combination.append(options[i][j])
-                backtrack(i + 1, max, combination)
-                combination.pop()
+
+            for c in digitToChars[digits[i]]:
+                backtrack(i + 1, currStr + c)
         
-        backtrack(0, len(options), [])
-        return result
+        if digits:
+            backtrack(0, "")
+        
+        return res
