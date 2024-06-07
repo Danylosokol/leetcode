@@ -15,7 +15,7 @@ class Solution:
             elif int(i) == 9:
                 option.append(chr(97 + ((int(i) - 2) * 3) + 3 + 1))
             options.append(option)
-        print(options)
+
         def backtrack(i, max, combination):
             if i == max:
                 if not len(combination):
