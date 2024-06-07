@@ -13,7 +13,7 @@ class Solution:
             if int(i) == 7:
                 option.append(chr(97 + ((int(i) - 2) * 3) + 3))
             elif int(i) == 9:
-                option.append(chr(97 + ((int(i) - 2) * 3) + 4))
+                option.append(chr(97 + ((int(i) - 2) * 3) + 3 + 1))
             options.append(option)
         print(options)
         def backtrack(i, max, combination):
