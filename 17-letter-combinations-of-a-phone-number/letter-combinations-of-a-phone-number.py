@@ -1,26 +1,26 @@
 class Solution:
     def letterCombinations(self, digits: str) -> List[str]:
-        res = []
+        result = []
         digitToChars = {
-            "2": "abc",
-            "3": "def",
-            "4": "ghi",
-            "5": "jkl",
-            "6": "mno",
-            "7": "pqrs",
-            "8": "tuv",
-            "9": "wxyz"
+            '2': 'abc',
+            '3': 'def',
+            '4': 'ghi',
+            '5': 'jkl',
+            '6': 'mno',
+            '7': 'pqrs',
+            '8': 'tuv',
+            '9': 'wxyz',
         }
 
-        def backtrack(i, currStr):
-            if len(currStr) == len(digits):
-                res.append(currStr)
+        def backtrack(i, combination):
+            if len(combination) == len(digits):
+                result.append(combination)
                 return
-
-            for c in digitToChars[digits[i]]:
-                backtrack(i + 1, currStr + c)
+            
+            for char in digitToChars[digits[i]]:
+                backtrack(i + 1, combination + char)
         
-        if digits:
+        if len(digits):
             backtrack(0, "")
         
-        return res
+        return result
