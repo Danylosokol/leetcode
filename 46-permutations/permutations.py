@@ -8,9 +8,11 @@ class Solution:
         
         result = []
         perms = self.backtrack(i + 1, nums)
+
         for p in perms:
             for j in range(len(p) + 1):
                 pCopy = p.copy()
                 pCopy.insert(j, nums[i])
                 result.append(pCopy)
+                
         return result
