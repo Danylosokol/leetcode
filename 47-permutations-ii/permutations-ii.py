@@ -1,24 +1,25 @@
 class Solution:
     def permuteUnique(self, nums: List[int]) -> List[List[int]]:
         result = []
-        perms = []
-        counts = {n: 0 for n in nums}
-        for n in nums:
-            counts[n] += 1
+        perm = []
+        counts = {num:0 for num in nums}
+        for num in nums:
+            counts[num] += 1
         
         def backtrack():
-            if len(perms) == len(nums):
-                result.append(perms[:])
+            if len(perm) == len(nums):
+                result.append(perm[:])
+                return
             
-            for n in counts:
-                if counts[n] > 0:
-                    perms.append(n)
-                    counts[n] -= 1
+            for num in counts:
+                if counts[num] > 0:
+                    perm.append(num)
+                    counts[num] -= 1
 
                     backtrack()
-                    
-                    perms.pop()
-                    counts[n] += 1
-            
+
+                    perm.pop()
+                    counts[num] += 1
+        
         backtrack()
         return result
