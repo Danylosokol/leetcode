@@ -14,7 +14,9 @@ class Solution:
                 if counts[n] > 0:
                     perms.append(n)
                     counts[n] -= 1
+
                     backtrack()
+                    
                     perms.pop()
                     counts[n] += 1
             
