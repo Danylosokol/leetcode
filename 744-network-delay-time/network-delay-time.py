@@ -21,6 +21,6 @@ class Solution:
             for w2, n2 in adj[n1]:
                 if n2 not in shortest:
                     heapq.heappush(minHeap, (w1 + w2, n2))
+                    
         result = max(shortest.values())
-        print(shortest)
         return result if result and len(shortest.keys()) == n else -1
