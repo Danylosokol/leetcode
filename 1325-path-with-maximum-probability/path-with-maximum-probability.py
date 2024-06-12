@@ -3,7 +3,7 @@ class Solution:
         adj = {}
         for i in range(n):
             adj[i] = []
-        print(adj)
+
         for i in range(len(edges)):
             adj[edges[i][0]].append((succProb[i], edges[i][1]))
             adj[edges[i][1]].append((succProb[i], edges[i][0]))
@@ -23,5 +23,5 @@ class Solution:
             for w2, n2 in adj[n1]:
                 if n2 not in result:
                     heapq.heappush(maxHeap, (w2 * w1 * -1, n2))
-        print(result)
+
         return result[end_node] if end_node in result else 0
