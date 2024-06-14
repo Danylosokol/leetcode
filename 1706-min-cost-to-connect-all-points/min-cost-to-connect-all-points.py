@@ -15,13 +15,13 @@ class Solution:
         visited = set()
 
         for d, n in adj[0]:
-            heapq.heappush(min_heap, [d, 0, n])
+            heapq.heappush(min_heap, [d, n])
         
         visited.add(0)
         result = 0
 
         while len(visited) < len(points):
-            d1, s1, n1 = heapq.heappop(min_heap)
+            d1, n1 = heapq.heappop(min_heap)
 
             if n1 in visited:
                 continue
@@ -31,7 +31,7 @@ class Solution:
 
             for d2, n2 in adj[n1]:
                 if n2 not in visited:
-                    heapq.heappush(min_heap, [d2, n1, n2])
+                    heapq.heappush(min_heap, [d2, n2])
         
         return result
 
