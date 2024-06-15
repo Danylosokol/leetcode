@@ -4,7 +4,7 @@ class Solution:
 
         for i in range(len(points)):
             adj[i] = []
-
+        
         for i in range(len(points)):
             for j in range(i + 1, len(points)):
                 distance = abs(points[j][0] - points[i][0]) + abs(points[j][1] - points[i][1])
@@ -25,14 +25,12 @@ class Solution:
 
             if n1 in visited:
                 continue
-
+            
             visited.add(n1)
             result += d1
-
+            
             for d2, n2 in adj[n1]:
                 if n2 not in visited:
                     heapq.heappush(min_heap, [d2, n2])
         
         return result
-
-        
