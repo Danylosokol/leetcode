@@ -15,12 +15,12 @@ class UnionFind:
         if p1 == p2:
             return False
         
-        if p1 < p2:
-            self.par[p1] = p2
-            self.rank[p2] += self.rank[p1]
-        else:
+        if p1 > p2:
             self.par[p2] = p1
             self.rank[p1] += self.rank[p2]
+        else:
+            self.par[p1] = p2
+            self.rank[p2] += self.rank[p1]
         return True
 
 class Solution:
@@ -29,17 +29,16 @@ class Solution:
             e.append(i)
         
         edges.sort(key = lambda e: e[2])
-
+        
         mst_weight = 0
-
         uf = UnionFind(n)
 
         for v1, v2, w, i in edges:
             if uf.union(v1, v2):
                 mst_weight += w
 
-        critical, pseudo = [], []
-
+        critical = []
+        pseudocritical = []
         for n1, n2, e_weight, i in edges:
             uf = UnionFind(n)
             weight = 0
@@ -57,8 +56,8 @@ class Solution:
             for v1, v2, w, j in edges:
                 if uf.union(v1, v2):
                     weight += w
-            
+
             if weight == mst_weight:
-                pseudo.append(i)
-    
-        return [critical, pseudo]   
+                pseudocritical.append(i)
+
+        return [critical, pseudocritical]
