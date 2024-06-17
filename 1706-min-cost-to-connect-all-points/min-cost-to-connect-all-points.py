@@ -29,15 +29,15 @@ class Solution:
 
         for i in range(len(points)):
             for j in range(i + 1, len(points)):
-                weight = abs(points[j][0] - points[i][0]) + abs(points[j][1] - points[i][1])
-                edges.append([i, j, weight])
-        
-        edges.sort(key = lambda e: e[2])
+                distance = abs(points[j][0] - points[i][0]) + abs(points[j][1] - points[i][1])
+                heapq.heappush(edges, [distance, i, j])
         
         uf = UnionFind(len(points))
         mst_weight = 0
-        for p1, p2, w in edges:
-            if uf.union(p1, p2):
-                mst_weight += w
-
+        
+        while edges:
+            distance, v1, v2 = heapq.heappop(edges)
+            if uf.union(v1, v2):
+                mst_weight += distance
+        
         return mst_weight
