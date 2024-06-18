@@ -1,29 +1,36 @@
 class Solution:
     def canFinish(self, numCourses: int, prerequisites: List[List[int]]) -> bool:
-        hashMap = {i: [] for i in range(numCourses)}
+        adj = {}
 
-        for course, prereq in prerequisites:
-            hashMap[course].append(prereq)
+        for i in range(numCourses):
+            adj[i] = []
         
+        for dst, src in prerequisites:
+            adj[src].append(dst)
+
+        topSort = []
         visited = set()
+        path = set()
+        for i in adj:
+            if not self.dfs(i, adj, visited, path, topSort):
+                return False
 
-        def dfs(course):
-            if course in visited:
-                return False
-            
-            if hashMap[course] == []:
-                return True
-            visited.add(course)
-            for prereq in hashMap[course]:
-                if not dfs(prereq):
-                    return False
-            
-            visited.remove(course)
-            hashMap[course] = []
+        return topSort        
+    
+    def dfs(self, src, adj, visited, path, topSort):
+        if src in path:
+            return False
+
+        if src in visited:
             return True
-        
-        for course in hashMap:
-            if not dfs(course):
+
+        visited.add(src)
+        path.add(src)
+
+        for dst in adj[src]:
+            if not self.dfs(dst, adj, visited, path, topSort):
                 return False
         
+        topSort.append(src)
+        path.remove(src)
         return True
