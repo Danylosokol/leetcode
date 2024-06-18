@@ -15,7 +15,7 @@ class Solution:
             if not self.dfs(i, adj, visited, path, topSort):
                 return False
 
-        return topSort        
+        return True        
     
     def dfs(self, src, adj, visited, path, topSort):
         if src in path:
