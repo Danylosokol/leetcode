@@ -9,22 +9,17 @@ class Solution:
 
         for pre, crs in queries:
             visited = set()
-            top_sort = set()
-            self.dfs(pre, visited, adj, top_sort)
-            if crs in top_sort:
-                result.append(True)
-            else:
-                result.append(False)
+            result.append(self.dfs(pre, crs, visited, adj))
         return result
         
-    def dfs(self, crs, visited, adj, top_sort):
-        if crs in visited:
+    def dfs(self, pre, crs, visited, adj):
+        if pre in visited:
             return False
         
-        visited.add(crs)
+        visited.add(pre)
 
-        for pre in adj[crs]:
-            self.dfs(pre, visited, adj, top_sort)
+        for i  in adj[pre]:
+            self.dfs(i, crs, visited, adj)
         
-        top_sort.add(crs)
+        return crs in visited
 
