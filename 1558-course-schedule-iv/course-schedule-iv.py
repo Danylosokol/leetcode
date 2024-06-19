@@ -2,7 +2,7 @@ class Solution:
     def checkIfPrerequisite(self, numCourses: int, prerequisites: List[List[int]], queries: List[List[int]]) -> List[bool]:
         adj = {i: [] for i in range(numCourses)}
 
-        for crs, pre in prerequisites:
+        for pre, crs in prerequisites:
             adj[crs].append(pre)
         
         prereqMap = {}
@@ -20,6 +20,6 @@ class Solution:
 
         result = []
         for u, v in queries:
-            result.append(v in prereqMap[u])
+            result.append(u in prereqMap[v])
         
         return result
