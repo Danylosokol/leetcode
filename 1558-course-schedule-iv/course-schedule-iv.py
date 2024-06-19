@@ -4,22 +4,22 @@ class Solution:
 
         for crs, pre in prerequisites:
             adj[crs].append(pre)
+        
+        prereqMap = {}
+
+        def dfs(crs):
+            if crs not in prereqMap:
+                prereqMap[crs] = set()
+                for pre in adj[crs]:
+                    prereqMap[crs] |= dfs(pre)
+                prereqMap[crs].add(crs)
+            return prereqMap[crs]
+
+        for crs in adj:
+            dfs(crs)
 
         result = []
-
-        for pre, crs in queries:
-            visited = set()
-            result.append(self.dfs(pre, crs, visited, adj))
+        for u, v in queries:
+            result.append(v in prereqMap[u])
+        
         return result
-        
-    def dfs(self, pre, crs, visited, adj):
-        if pre in visited:
-            return False
-        
-        visited.add(pre)
-
-        for i  in adj[pre]:
-            self.dfs(i, crs, visited, adj)
-        
-        return crs in visited
-
