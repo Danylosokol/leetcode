@@ -14,8 +14,10 @@ class Solution:
                     preHashmap[crs] |= dfs(pre)
                 preHashmap[crs].add(crs)
             return preHashmap[crs]
+            
         for crs in adj:
             dfs(crs)
+
         result = []
         for u, v in queries:
             result.append(u in preHashmap[v])
