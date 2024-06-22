@@ -7,8 +7,7 @@ class Solution:
         for c in range(M + 1):
             if nums[0] <= c:
                 dp[c] = nums[0]
-        print("dp:")
-        print(dp)
+ 
         for i in range(1, N):
             cur_row = [0] * (M + 1)
             for c in range(1, M + 1):
@@ -18,5 +17,5 @@ class Solution:
                     include = nums[i] + dp[c - nums[i]]
                 cur_row[c] = max(skip, include)
             dp = cur_row
-        print(dp)
+            
         return dp[M] == capacity
