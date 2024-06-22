@@ -11,6 +11,6 @@ class Solution:
             next_dp = set()
             for t in dp:
                 next_dp.add(t + nums[i])
-            dp |= next_dp
+            dp |= next_dp # join two sets, we could also add t to next_dp and just copy next_dp completely to dp.
         
         return target in dp 
