@@ -1,6 +1,8 @@
 class Solution:
     def canPartition(self, nums: List[int]) -> bool:
         capacity = sum(nums) / 2
+        if not capacity.is_integer():
+            return False
         N, M = len(nums), int(capacity)
         dp = [0] * (M + 1)
 
@@ -17,5 +19,5 @@ class Solution:
                     include = nums[i] + dp[c - nums[i]]
                 cur_row[c] = max(skip, include)
             dp = cur_row
-            
+
         return dp[M] == capacity
