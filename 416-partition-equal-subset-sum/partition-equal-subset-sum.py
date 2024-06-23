@@ -4,13 +4,13 @@ class Solution:
             return False
         
         target = sum(nums) // 2
-        dp = set()
-        dp.add(0)
+        df = set()
+        df.add(0)
 
         for i in range(len(nums) - 1, -1, -1):
-            next_dp = set()
-            for t in dp:
-                next_dp.add(t + nums[i])
-            dp |= next_dp # join two sets, we could also add t to next_dp and just copy next_dp completely to dp.
+            next_df = set()
+            for t in df:
+                next_df.add(t + nums[i])
+            df |= next_df
         
-        return target in dp 
+        return target in df
