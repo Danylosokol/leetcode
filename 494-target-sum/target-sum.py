@@ -1,17 +1,15 @@
 class Solution:
     def findTargetSumWays(self, nums: List[int], target: int) -> int:
-        dp = {}
+        df = {}
 
-        def backtrack(index, total):
+        def backtrack(index, sum):
             if index >= len(nums):
-                return 1 if total == target else 0
+                return 1 if sum == target else 0
             
-            if (index, total) in dp:
-                return dp[(index, total)]
+            if (index, sum) in df:
+                return df[(index, sum)]
             
-            dp[(index, total)] = (backtrack(index + 1, total + nums[index]) + 
-                                  backtrack(index + 1, total - nums[index]))
-
-            return dp[(index, total)]
+            df[(index, sum)] = backtrack(index + 1, sum + nums[index]) + backtrack(index + 1, sum - nums[index])
+            return df[(index, sum)]
         
         return backtrack(0, 0)
