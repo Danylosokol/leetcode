@@ -2,22 +2,20 @@ class Solution:
     def findMaxForm(self, strs: List[str], m: int, n: int) -> int:
         dp = {}
 
-        def dfs(i, m, n):
-            if i >= len(strs):
+        def dfs(index, m, n):
+            if index >= len(strs):
                 return 0
             
-            if (i, m, n) in dp:
-                return dp[(i, m, n)]
+            if (index, m, n) in dp:
+                return dp[(index, m, n)]
             
-            mCount, nCount = strs[i].count("0"), strs[i].count("1")
+            dp[(index, m, n)] = dfs(index + 1, m, n)
 
-            dp[(i, m, n)] = dfs(i + 1, m, n)
+            mCount, nCount = strs[index].count("0"), strs[index].count("1")
 
-            if mCount <= m and nCount <= n:
-                dp[(i, m, n)] = max(
-                    dp[(i, m, n)],
-                    1 + dfs(i + 1, m - mCount, n - nCount)
-                )
-            return dp[(i, m, n)]
+            if(m - mCount >= 0 and n - nCount >= 0):
+                dp[(index, m, n)] = max(dp[(index, m, n)], 1 + dfs(index + 1, m - mCount, n - nCount))
+            
+            return dp[(index, m, n)]
         
         return dfs(0, m, n)
