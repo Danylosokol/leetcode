@@ -13,7 +13,7 @@ class Solution:
 
             mCount, nCount = strs[index].count("0"), strs[index].count("1")
 
-            if(m - mCount >= 0 and n - nCount >= 0):
+            if (m >= mCount) and (n >= nCount):
                 dp[(index, m, n)] = max(dp[(index, m, n)], 1 + dfs(index + 1, m - mCount, n - nCount))
             
             return dp[(index, m, n)]
