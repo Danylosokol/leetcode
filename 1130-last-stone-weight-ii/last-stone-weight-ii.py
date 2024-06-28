@@ -7,17 +7,17 @@ class Solution:
         dp = [0] * (M + 1)
 
         for c in range(M + 1):
-            if stones[0] <= c:
+            if c >= stones[0]:
                 dp[c] = stones[0]
         
         for i in range(1, N):
-            currentRow = [0] * (M + 1)
+            newRow = [0] * (M + 1)
             for c in range(1, M + 1):
                 skip = dp[c]
                 include = 0
                 if c - stones[i] >= 0:
                     include = stones[i] + dp[c - stones[i]]
-                currentRow[c] = max(skip, include)
-            dp = currentRow
-            
+                newRow[c] = max(skip, include)
+            dp = newRow
+        
         return abs(dp[M] - (stoneSum - dp[M]))
