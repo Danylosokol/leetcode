@@ -1,19 +1,23 @@
 class Solution:
     def lastStoneWeightII(self, stones: List[int]) -> int:
-        dp = {}
         stoneSum = sum(stones)
-        target = ceil(stoneSum / 2)
+        target = ceil(stoneSum/2)
 
-        def dfs(index, total):
-            if total >= target or index >= len(stones):
-                return abs(total - (stoneSum - total))
+        N, M = len(stones), target
+        dp = [0] * (M + 1)
 
-            if (index, total) in dp:
-                return dp[(index, total)]
-
-            dp[(index, total)] = min(
-                dfs(index + 1, total), dfs(index + 1, total + stones[index])
-            )
-            return dp[(index, total)]
-
-        return dfs(0, 0)
+        for c in range(M + 1):
+            if stones[0] <= c:
+                dp[c] = stones[0]
+        
+        for i in range(1, N):
+            currentRow = [0] * (M + 1)
+            for c in range(1, M + 1):
+                skip = dp[c]
+                include = 0
+                if c - stones[i] >= 0:
+                    include = stones[i] + dp[c - stones[i]]
+                currentRow[c] = max(skip, include)
+            dp = currentRow
+            
+        return abs(dp[M] - (stoneSum - dp[M]))
