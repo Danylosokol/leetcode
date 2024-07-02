@@ -15,7 +15,6 @@ class Solution:
                 j = i
                 while j < len(days) and days[j] < days[i] + d:
                     j += 1
-                
                 dp[i] = min(dp[i], c + dfs(j))
             
             return dp[i]
