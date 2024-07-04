@@ -4,13 +4,13 @@ class Solution:
         cols = len(text2)
         prev_row = [0] * (cols + 1)
 
-        for r in range(rows):
+        for i in range(rows):
             cur_row = [0] * (cols + 1)
-            for c in range(cols):
-                if text1[r] == text2[c]:
-                    cur_row[c + 1] = 1 + prev_row[c]
+            for j in range(cols):
+                if text1[i] == text2[j]:
+                    cur_row[j + 1] = 1 + prev_row[j]
                 else:
-                    cur_row[c + 1] = max(cur_row[c], prev_row[c + 1])
+                    cur_row[j + 1] = max(cur_row[j], prev_row[j + 1])
             prev_row = cur_row
-        
-        return cur_row[cols]
+
+        return prev_row[cols]  
