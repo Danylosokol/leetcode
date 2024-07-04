@@ -5,7 +5,7 @@ class Solution:
         def dfs(i, j):
             if j == len(t):
                 return 1
-
+            
             if i == len(s):
                 return 0
             
