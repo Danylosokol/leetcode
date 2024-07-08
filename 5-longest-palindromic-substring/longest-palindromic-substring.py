@@ -18,6 +18,5 @@ class Solution:
                     result = s[l:r + 1]
                 l -= 1
                 r += 1
-        print(longest)
-        print(result)
+
         return result
