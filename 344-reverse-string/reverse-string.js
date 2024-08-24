@@ -3,13 +3,15 @@
  * @return {void} Do not return anything, modify s in-place instead.
  */
 var reverseString = function(s) {
-    const stack = []
-
-    for(i in s){
-        stack.push(s[i])
+    function helper(L, R){
+        if(L >= R){
+            return 
+        }
+        const temp = s[L]
+        s[L] = s[R]
+        s[R] = temp
+        helper(++L, --R)
     }
 
-    for(i in s){
-        s[i] = stack.pop()
-    }
+    helper(0, s.length - 1)
 };
