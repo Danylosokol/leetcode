@@ -19,12 +19,6 @@ var merge = function (nums1, m, nums2, n) {
         currIndx--
     }
 
-    // while (indx1 >= 0 && currIndx >= 0) {
-    //     nums1[currIndx] = nums1[indx1]
-    //     indx1--
-    //     currIndx--
-    // }
-
     while (indx2 >= 0 && currIndx >= 0) {
         nums1[currIndx] = nums2[indx2]
         indx2--
