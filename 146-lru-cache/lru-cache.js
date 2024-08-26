@@ -1,9 +1,9 @@
 class Node {
-    constructor(key, val){
+    constructor(key, value){
         this.key = key
-        this.val = val
-        this.next = null
-        this.prev = null
+        this.value = value
+        this.left = null
+        this.right = null
     }
 }
 
@@ -13,32 +13,26 @@ class Node {
 var LRUCache = function(capacity) {
     this.cap = capacity
     this.cache = new Map()
-
     this.left = new Node(0, 0)
     this.right = new Node(0, 0)
-    this.left.next = this.right 
-    this.right.prev = this.left
+    this.left.right = this.right
+    this.right.left =this.left
 };
 
-/** Remove node from doubly linked list
- * @param {Node} node
- */
 LRUCache.prototype.remove = function(node){
-    const prev = node.prev
-    const next = node.next
+    const left = node.left, right = node.right
 
-    prev.next = next
-    next.prev = prev
+    left.right = right
+    right.left = left
 }
 
-LRUCache.prototype.insert = function(node){
-    const prev = this.right.prev
-    const next = this.right
+LRUCache.prototype.add = function(node){
+    const left = this.right.left, right = this.right
 
-    node.prev = prev
-    node.next = next
-    prev.next = node
-    next.prev = node
+    left.right = node
+    right.left = node
+    node.left = left
+    node.right = right
 }
 
 /** 
@@ -49,8 +43,8 @@ LRUCache.prototype.get = function(key) {
     if(this.cache.has(key)){
         const node = this.cache.get(key)
         this.remove(node)
-        this.insert(node)
-        return node.val
+        this.add(node)
+        return node.value
     }
     return -1
 };
@@ -64,13 +58,11 @@ LRUCache.prototype.put = function(key, value) {
     if(this.cache.has(key)){
         this.remove(this.cache.get(key))
     }
-
     const newNode = new Node(key, value)
     this.cache.set(key, newNode)
-    this.insert(newNode)
-
+    this.add(newNode)
     if(this.cache.size > this.cap){
-        const lru = this.left.next
+        const lru = this.left.right
         this.remove(lru)
         this.cache.delete(lru.key)
     }
